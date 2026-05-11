@@ -11,12 +11,14 @@ app.get("/", (req, res) => {
 
 app.post("/post", async (req, res) => {
     const data = req.body
-    res.json({
+    res
+    .cookie("token", "abcdef", {
+        expires: Date.now() + 3600000
+    })
+    .json({
         success: true,
         message: "POST request processed successfully",
         data: data
-    }).cookie("token", "abcdef", {
-        expires: Date.now() + 3600000
     })
 })
 
